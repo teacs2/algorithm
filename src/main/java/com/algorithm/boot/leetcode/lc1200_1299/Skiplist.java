@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 /**
  * 1206. 设计跳表
- * 困难   参考: https://leetcode.cn/problems/design-skiplist/solutions/1698640/she-ji-tiao-biao-by-capital-worker-3vqk/
+ * 困难   参考: <a href="https://leetcode.cn/problems/design-skiplist/solutions/1698640/she-ji-tiao-biao-by-capital-worker-3vqk/"></a>
  */
 public class Skiplist {
     public static void main(String[] args) {
@@ -21,7 +21,7 @@ public class Skiplist {
         b = skipList.search(3);
 
     }
-    class Node {
+    private static class Node {
         int val;
         Node[] next;
         Node (int val, int maxLevel){
@@ -31,7 +31,7 @@ public class Skiplist {
     }
 
     private static final int MAX_LEVEL = 32;
-    private static final double SKIPLIST_P = 0.5;
+    private static final double SKIPLIST_P = 0.25;
     private final Node head;
     private int curLevel;
 
