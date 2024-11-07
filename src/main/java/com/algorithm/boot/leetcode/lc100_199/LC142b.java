@@ -6,8 +6,9 @@ public class LC142b {
     /**
      * 方法二 快慢指针
      * 如果有环
-     *  快慢指针相遇的时候，增加第三个指针，从head出发，慢指针继续移动，相遇位置，第三个指针也必然会到达相遇点，因为慢指针也走了两倍的距离，
-     *  如果速度相同想要相遇，则必然是在入环的时候就相遇，所以第三个指针与慢指针第一次相同时，就是环的起点
+     * 快慢指针相遇的时候，增加第三个指针，从head出发，慢指针继续移动，相遇位置，第三个指针也必然会到达相遇点，因为慢指针也走了两倍的距离，
+     * 如果速度相同想要相遇，则必然是在入环的时候就相遇，所以第三个指针与慢指针第一次相同时，就是环的起点
+     *
      * @param head
      * @return
      */
@@ -15,7 +16,7 @@ public class LC142b {
         if (head == null) return null;
         ListNode fast = head;
         ListNode slow = head;
-        while (fast != null && fast.next != null && fast.next.next != null) {
+        while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
             if (fast == slow) {
@@ -23,6 +24,24 @@ public class LC142b {
                 while (ptr != slow) {
                     ptr = ptr.next;
                     slow = slow.next;
+                }
+                return slow;
+            }
+        }
+        return null;
+    }
+
+    public ListNode detectCycle1(ListNode head) {
+        if (head == null) return null;
+        ListNode slow = head, fast = head;  // fast = head.next遇到环的话，slow第二次出发会错开一位
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {   // 说明有环
+                ListNode slow2 = head;
+                while (slow != slow2) {
+                    slow = slow.next;
+                    slow2 = slow2.next;
                 }
                 return slow;
             }

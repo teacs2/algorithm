@@ -26,4 +26,12 @@ public class LC206c {
         head.next = null;       // 最外层节点指向空
         return newHead;
     }
+
+    public ListNode reverseList2(ListNode head) {
+        if (head == null || head.next == null) return null;
+        ListNode newHead = reverseList2(head.next);
+        head.next.next = head.next;
+        head.next = null;
+        return newHead;
+    }
 }

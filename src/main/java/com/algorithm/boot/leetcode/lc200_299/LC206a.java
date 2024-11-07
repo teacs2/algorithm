@@ -38,4 +38,16 @@ public class LC206a {
         }
         return pre;
     }
+
+    public ListNode reverseList2(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        while (cur != null) {
+            ListNode nxt = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = cur.next;
+        }
+        return pre;
+    }
 }

@@ -49,4 +49,20 @@ public class LC24a {
         return dummy.next;
     }
 
+    public ListNode swapPairs2(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode dummy = new ListNode(0, head);
+        ListNode pre = dummy;
+        ListNode cur = head;
+        while (cur != null && cur.next != null) {
+            ListNode nxt = cur.next;
+            pre.next = nxt;
+            cur.next = nxt.next;
+            nxt.next = cur;
+
+            pre = cur;
+            cur = cur.next;
+        }
+        return dummy.next;
+    }
 }
