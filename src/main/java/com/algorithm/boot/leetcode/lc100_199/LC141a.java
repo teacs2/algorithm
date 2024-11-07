@@ -28,4 +28,13 @@ public class LC141a {
         }
         return false;
     }
+
+    public boolean hasCycle1(ListNode head) {
+        Set<ListNode> set = new HashSet<>();
+        while (head != null) {
+            if(!set.add(head)) return true;
+            head = head.next;
+        }
+        return false;
+    }
 }
