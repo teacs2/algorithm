@@ -30,6 +30,25 @@ public class LC148a {
         return mergeTwoLists(left,right);
     }
 
+    /*
+    2024年11月10日
+     */
+    public ListNode sortList1(ListNode head) {
+        if (head == null || head.next == null) return head;
+        // fast = head的话,当链表长度为2时,slow会指向第二个节点,而此时 slow.next本身就是null
+        ListNode fast = head.next, slow = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        ListNode tmp = slow.next;
+        slow.next = null;
+        ListNode left = sortList1(head);
+        ListNode right = sortList1(tmp);
+
+        return mergeTwoLists(left, right);
+    }
+
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode dummy = new ListNode(0);
         ListNode pre = dummy;

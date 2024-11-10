@@ -3,6 +3,7 @@ package com.algorithm.boot.leetcode.lc1_99;
 import com.algorithm.boot.datastructure.ListNode;
 
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * 23. 合并 K 个升序链表
@@ -31,6 +32,27 @@ public class LC23b {
             }
             cur.next = node;
             cur = cur.next;
+        }
+        return dummy.next;
+    }
+
+    /*
+    2024年11月10日
+     */
+    public ListNode mergeKLists1(ListNode[] lists) {
+        Queue<ListNode> heap = new PriorityQueue<>((a, b) -> Integer.compare(a.val, b.val));    // 可以防止整形溢出
+        for (ListNode head : lists) {
+            if (head != null) heap.offer(head);
+        }
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+        while (!heap.isEmpty()) {
+            ListNode node = heap.poll();
+            if (node.next != null) {
+                heap.offer(node.next);
+            }
+            cur.next = node;
+            cur = node;
         }
         return dummy.next;
     }
