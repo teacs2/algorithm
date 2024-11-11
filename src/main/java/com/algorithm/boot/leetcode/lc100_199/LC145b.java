@@ -84,6 +84,7 @@ public class LC145b {
             if (root.right == null || prevAdd == root.right) {
                 list.add(root.val);
                 prevAdd = root;
+                root = null;        // 不加上会一直循环父节点和右子节点
             } else {
                 stack.push(root);
                 root = root.right;
@@ -106,6 +107,28 @@ public class LC145b {
             } else {
                 visited.add(stack.peek());
                 root = stack.peek().right;
+            }
+        }
+        return list;
+    }
+
+    public List<Integer> postorderTraversalA2(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode prevAdd = null;
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            if (root.right == null || prevAdd == root.right) {
+                list.add(root.val);
+                prevAdd = root;
+                root = null;
+            } else {
+                stack.push(root);
+                root = root.right;
             }
         }
         return list;

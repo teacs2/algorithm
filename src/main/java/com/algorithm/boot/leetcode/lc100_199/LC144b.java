@@ -53,4 +53,23 @@ public class LC144b {
         }
         return list;
     }
+
+    /*
+    2024年11月11日
+    2 前序遍历,迭代
+     */
+    public List<Integer> preorderTraversal2(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                list.add(root.val);
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            root = root.right;
+        }
+        return list;
+    }
 }

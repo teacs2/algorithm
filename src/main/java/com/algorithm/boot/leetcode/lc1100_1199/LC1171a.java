@@ -52,4 +52,32 @@ public class LC1171a {
         }
         return dummy.next;
     }
+
+    public ListNode removeZeroSumSublists1(ListNode head) {
+        if (head == null) return null;
+        var map = new HashMap<Integer, ListNode>();
+        var sum = 0;
+        var dummy = new ListNode(0, head);  // 头节点可能被删除则需要准备dummy
+        map.put(0, dummy);  // 用于解决需要删除头节点的情况
+        for (var cur = head; cur != null; cur = cur.next) {
+            sum += cur.val;
+            if (map.containsKey(sum)) {
+                // 删除map中的下一个元素,到当前元素,这一段的和为0
+                var pre = map.get(sum);
+                var del = pre.next;
+                pre.next = cur.next;
+
+                // 整理map中的元素
+                var delSum = sum;
+                while (del != cur) {
+                    delSum += del.val;
+                    map.remove(delSum);
+                    del = del.next;
+                }
+            } else {
+                map.put(sum, cur);
+            }
+        }
+        return dummy.next;
+    }
 }

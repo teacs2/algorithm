@@ -3,6 +3,7 @@ package com.algorithm.boot.leetcode.lc1000_1099;
 import com.algorithm.boot.datastructure.ListNode;
 
 import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * 1019. 链表中的下一个更大节点
@@ -44,5 +45,25 @@ public class LC1019b {
             n++;    // 记录链表长度
         }
         return pre;
+    }
+
+    /*
+    1 2024年11月11日
+     */
+    public int[] nextLargerNodes1(ListNode head) {
+        // 1. 反转链表
+        head = reverseList(head);
+        var ans = new int[n];
+        var stack = new ArrayDeque<Integer>();
+        for (ListNode cur = head; cur != null; cur = cur.next) {
+            // 当前元素一直与栈顶元素比较,一直出栈,直到栈顶元素比自己大为止,栈顶元素就是第一个比自己大的元素
+            while (!stack.isEmpty() && cur.val >= stack.peek()) {
+                stack.pop();
+            }
+            // 如果栈为空,当前元素没有下一个更大的元素,加入当前元素
+            ans[--n] = stack.isEmpty() ? 0 : stack.peek();
+            stack.push(cur.val);
+        }
+        return ans;
     }
 }

@@ -15,9 +15,26 @@ public class LC19a {
         while (end != null) {
             end = end.next;
             n--;
-            if (n < 1) {
+            if (n < 1) {        // 应该是 n < 0
                 node = node.next;
             }
+        }
+        node.next = node.next.next;
+        return dummy.next;
+    }
+
+    /*
+    1 2024年11月12日
+    删除倒数第n个节点 -双指针
+     */
+    public ListNode removeNthFromEnd1(ListNode head, int n) {
+        var dummy = new ListNode(0, head);
+        var node = dummy;
+        var end = dummy.next;
+        while (end != null) {
+            end = end.next;
+            n--;
+            if (n < 0) node = node.next;
         }
         node.next = node.next.next;
         return dummy.next;
