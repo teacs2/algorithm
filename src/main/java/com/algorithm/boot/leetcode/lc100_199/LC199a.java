@@ -10,19 +10,16 @@ import java.util.List;
  * 给定一个二叉树的 根节点 root，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。
  */
 public class LC199a {
-    int depthMax;
-    List<Integer> list;
     public List<Integer> rightSideView(TreeNode root) {
-        list = new ArrayList<>();
-        dfs(root, 1);
-        return list;
+        List<Integer> ans = new ArrayList<>();
+        dfs(root, 0, ans);
+        return ans;
     }
 
-    private void dfs(TreeNode root, int depth) {
+    private void dfs(TreeNode root, int depth, List<Integer> ans) {
         if (root == null) return;
-        if (depth > depthMax) list.add(root.val);   // 更深,加入值
-        depthMax = Math.max(depth, depthMax);       // 更新最大深度
-        dfs(root.right, depth + 1);
-        dfs(root.left, depth + 1);
+        if (depth == ans.size()) ans.add(root.val);   // 这个深度首次遇到
+        dfs(root.right, depth + 1, ans);        // 先递归右子树，保证首次遇到的一定是最右边的节点
+        dfs(root.left, depth + 1, ans);
     }
 }
