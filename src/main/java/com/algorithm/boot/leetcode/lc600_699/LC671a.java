@@ -9,6 +9,8 @@ import com.algorithm.boot.datastructure.TreeNode;
  * 更正式地说，即 root.val = min(root.left.val, root.right.val) 总成立。
  * 给出这样的一个二叉树，你需要输出所有节点中的 第二小的值 。
  * 如果第二小的值不存在的话，输出 -1 。
+ *
+ * 1 <= Node.val <= 2^31 - 1
  */
 public class LC671a {
     public static void main(String[] args) {
@@ -19,17 +21,33 @@ public class LC671a {
     int min;
     int secondMin = -1;
     public int findSecondMinimumValue(TreeNode root) {
-        if (root.left == null) return -1;
         min = root.val;
         dfs(root);
-        return secondMin == min ? -1 : secondMin;
+        return secondMin;
     }
 
     private void dfs(TreeNode node) {
         if (node == null) return;
-        if (secondMin != -1 && secondMin >= node.val) return;
-        if (node.val < secondMin && node.val > min) secondMin = node.val;
+        if (secondMin != -1 && secondMin <= node.val) return;
+        if (node.val > min) secondMin = node.val;
         dfs(node.left);
         dfs(node.right);
+    }
+
+    /*
+    1 2024年11月12日
+     */
+    public int findSecondMinimumValue1(TreeNode root) {
+        min = root.val;
+        dfs1(root);
+        return secondMin;
+    }
+
+    private void dfs1(TreeNode node) {
+        if (node == null) return;
+        if (secondMin != -1 && secondMin <= node.val) return;
+        if (node.val > min) secondMin = node.val;
+        dfs1(node.left);
+        dfs1(node.right);
     }
 }

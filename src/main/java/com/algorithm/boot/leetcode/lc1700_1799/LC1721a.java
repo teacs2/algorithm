@@ -42,7 +42,7 @@ public class LC1721a {
         ListNode curr = head;
         // 计数
         int cnt = 1;
-        // curr == null 会多走一步
+        // curr != null 会多走一步
         while (curr.next != null) {
             if (cnt++ < k) {
                 first = first.next;
@@ -54,6 +54,28 @@ public class LC1721a {
         cnt = first.val;
         first.val = last.val;
         last.val = cnt;
+        return head;
+    }
+
+    /*
+    2 2024年11月12日
+     */
+    public ListNode swapNodes2(ListNode head, int k) {
+        ListNode first = head;
+        ListNode last = head;
+        ListNode cur = head;
+        int cnt = 1;
+        while (cur.next != null) {
+            if (cnt++ < k) {
+                first = first.next;
+            } else {
+                last = last.next;
+            }
+            cur = cur.next;
+        }
+        int temp = first.val;
+        first.val = last.val;
+        last.val = temp;
         return head;
     }
 }

@@ -38,4 +38,21 @@ public class LC872a {
         if (node.left != null) getList(node.left, list);
         if (node.right != null) getList(node.right, list);
     }
+
+    /*
+    1 2024年11月12日
+     */
+    public boolean leafSimilar1(TreeNode root1, TreeNode root2) {
+        var list1 = new ArrayList<Integer>();
+        var list2 = new ArrayList<Integer>();
+        getList1(root1, list1);
+        getList1(root2, list2);
+        return list1.equals(list2);
+    }
+
+    private void getList1(TreeNode root, ArrayList<Integer> list) {
+        if (root.left == null && root.right == null) list.add(root.val);
+        if (root.left != null) getList1(root.left, list);
+        if (root.right != null) getList1(root.right, list);
+    }
 }

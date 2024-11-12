@@ -32,6 +32,25 @@ public class LC404b {
         return ans;
     }
 
+    /*
+    1 2024年11月12日
+     */
+    public int sumOfLeftLeaves1(TreeNode root) {
+        if (root == null) return 0;
+        int ans = 0;
+        var stack = new ArrayDeque<TreeNode>();
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            if (isLeaf(root) && !stack.isEmpty() && root == stack.peek().left) ans += root.val;
+            root = root.right;
+        }
+        return ans;
+    }
+
     private boolean isLeaf(TreeNode root) {
         return root.left == null && root.right == null;
     }

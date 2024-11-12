@@ -27,4 +27,14 @@ public class LC129a {
         if (root.left == null && root.right == null) return cur;
         return dfs(root.left, val * 10 + root.val) + dfs(root.right, val * 10 + root.val);
     }
+
+    /*
+    1 2024年11月12日
+     */
+    private int dfs1(TreeNode root, int val) {
+        if (root == null) return 0;
+        int cur = val * 10 + root.val;
+        if (root.left == null && root.right == null) return cur;
+        return dfs1(root.left, cur) + dfs1(root.right, cur);
+    }
 }
