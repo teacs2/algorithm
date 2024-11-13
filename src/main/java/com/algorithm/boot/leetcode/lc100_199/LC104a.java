@@ -13,4 +13,14 @@ public class LC104a {
         int depth2 = maxDepth(root.right);
         return Math.max(depth1, depth2) + 1;
     }
+
+    /*
+    1. 2024年11月13日
+     */
+    public int maxDepth1(TreeNode root) {
+        if (root == null) return 0;
+        int left = maxDepth1(root.left);
+        int right = maxDepth1(root.right);
+        return Math.max(left, right) + 1;
+    }
 }

@@ -17,6 +17,13 @@ public class LC1315a {
         return dfs(root, -1, -1);
     }
 
+    /**
+     *
+     * @param root  节点
+     * @param p     parent
+     * @param gp    grandparent
+     * @return
+     */
     private int dfs(TreeNode root, int p, int gp) {
         if (root == null) return 0;
         int ans = 0;
@@ -24,5 +31,21 @@ public class LC1315a {
             ans += root.val;
         }
         return dfs(root.left, root.val, p) + dfs(root.right, root.val, p) + ans;
+    }
+
+    /*
+    1 2024年11月13日
+     */
+    public int sumEvenGrandparent1(TreeNode root) {
+        return dfs1(root, -1, -1);
+    }
+
+    private int dfs1(TreeNode root, int p, int gp) {
+        if (root == null) return 0;
+        int ans = 0;
+        if (gp % 2 == 0) {
+            ans += root.val;
+        }
+        return dfs1(root.left, root.val, p) + dfs1(root.right, root.val, p);
     }
 }

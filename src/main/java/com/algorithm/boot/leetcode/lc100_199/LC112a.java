@@ -20,4 +20,16 @@ public class LC112a {
         boolean right = hasPathSum(root.right, targetSum - root.val);
         return left || right;
     }
+
+    /*
+    1 2024年11月13日
+     */
+    public boolean hasPathSum1(TreeNode root, int targetSum) {
+        if (root == null) return false;
+        if (root.val == targetSum && root.right == null && root.left == null) {
+            return true;
+        }
+        targetSum -= root.val;
+        return hasPathSum1(root.left, targetSum) || hasPathSum1(root.right, targetSum);
+    }
 }

@@ -9,6 +9,7 @@ import com.algorithm.boot.datastructure.ListNode;
  * 长度为 n 链表的中间节点是从头数起第 ⌊n / 2⌋ 个节点（下标从 0 开始），其中 ⌊x⌋ 表示小于或等于 x 的最大整数。
  *
  * 对于 n = 1、2、3、4 和 5 的情况，中间节点的下标分别是 0、1、1、2 和 2 。
+ * 链表中节点的数目在范围 [1, 10^5] 内
  */
 public class LC2095a {
     public ListNode deleteMiddle(ListNode head) {
@@ -27,6 +28,21 @@ public class LC2095a {
         } else {
             slow.next = slow.next.next;
         }
+        return dummy.next;
+    }
+
+    /*
+    1 2024年11月13日
+     */
+    public ListNode deleteMiddle1(ListNode head) {
+        ListNode dummy = new ListNode(0, head);
+        ListNode slow = dummy;  // 该slow节点为待删除节点的前一个节点
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        slow.next = slow.next.next;
         return dummy.next;
     }
 }

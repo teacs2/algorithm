@@ -37,4 +37,25 @@ public class LC988a {
         sb.deleteCharAt(sb.length() - 1);   // 回到外一层，移除拼接字符
     }
 
+    /*
+    1 2024年11月13日
+     */
+    public String smallestFromLeaf1(TreeNode root) {
+        dfs1(root, new StringBuilder());
+        return ans;
+    }
+
+    private void dfs1(TreeNode node, StringBuilder sb) {
+        if (node == null) return;
+        sb.append((char) ('a' + node.val));
+        if (node.left == null && node.right == null) {
+            sb.reverse();
+            String s = sb.toString();
+            sb.reverse();
+            if (s.compareTo(ans) < 0) ans = s;
+        }
+        dfs1(node.left, sb);
+        dfs1(node.right, sb);
+        sb.deleteCharAt(sb.length() - 1);
+    }
 }

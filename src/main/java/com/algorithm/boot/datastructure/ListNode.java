@@ -26,4 +26,23 @@ public class ListNode {
         }
         return head;
     }
+
+    public static int[] listToArray(ListNode head) {
+        int len = getLength(head);
+        var arr = new int[len];
+        for (int i = 0; i < len; i++) {
+            arr[i] = head.val;
+            head = head.next;
+        }
+        return arr;
+    }
+
+    public static int getLength(ListNode head) {
+        int len = 0;
+        while (head != null) {
+            head = head.next;
+            len++;
+        }
+        return len;
+    }
 }

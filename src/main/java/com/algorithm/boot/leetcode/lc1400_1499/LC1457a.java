@@ -35,6 +35,27 @@ public class LC1457a {
         return res;
     }
 
+    /*
+    1 2024年11月13日
+     */
+    public int pseudoPalindromicPaths1(TreeNode root) {
+        var counter = new int[10];
+        return dfs1(root, counter);
+    }
+    private int dfs1(TreeNode node, int[] counter) {
+        if (node == null) return 0;
+        counter[node.val]++;
+        int res = 0;
+        if (isLeaf(node)) {
+            if (isPseudoPalindromic(counter)) res++;
+        } else {
+            res = dfs1(node.left, counter) + dfs1(node.right, counter);
+        }
+        counter[node.val]--;
+        return res;
+    }
+
+
     private boolean isPseudoPalindromic(int[] counter) {
         int odd = 0;
         for (int num : counter) {

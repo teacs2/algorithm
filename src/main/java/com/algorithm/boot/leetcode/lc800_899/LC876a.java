@@ -23,4 +23,17 @@ public class LC876a {
             return slow.next;
         }
     }
+
+    /*
+    1 2024年11月13日
+     */
+    public ListNode middleNode1(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
 }
