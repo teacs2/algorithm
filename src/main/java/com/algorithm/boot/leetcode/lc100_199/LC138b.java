@@ -36,4 +36,15 @@ public class LC138b {
         }
         return cache.get(head);
     }
+
+    public Node copyRandomList1(Node head) {
+        if (head == null) return null;
+        if (!cache.containsKey(head)) {
+            Node copyNode = new Node(head.val);
+            cache.put(head, copyNode);
+            copyNode.next = copyRandomList1(head.next);
+            copyNode.random = copyRandomList1(head.random);
+        }
+        return cache.get(head);
+    }
 }

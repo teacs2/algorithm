@@ -22,4 +22,20 @@ public class LC199a {
         dfs(root.right, depth + 1, ans);        // 先递归右子树，保证首次遇到的一定是最右边的节点
         dfs(root.left, depth + 1, ans);
     }
+
+    /*
+    1 2024年11月14日
+     */
+    public List<Integer> rightSideView1(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        dfs1(root, 0, list);
+        return list;
+    }
+
+    private void dfs1(TreeNode node, int depth, List<Integer> list) {
+        if (node == null) return;
+        if (depth == list.size()) list.add(node.val);
+        dfs1(node.right, depth + 1, list);
+        dfs1(node.left, depth + 1, list);
+    }
 }

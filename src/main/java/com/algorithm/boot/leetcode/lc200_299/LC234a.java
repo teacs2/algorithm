@@ -45,10 +45,24 @@ public class LC234a {
         }
     }
 
-    public static void main(String[] args) {
-        ListNode head = ListNode.buildFromArray(new Integer[]{1, 2, 2, 2, 1});
-
-        LC234a a = new LC234a();
-        a.isPalindrome(head);
+    /*
+    1 2024年11月14日
+     */
+    public boolean isPalindrome1(ListNode head) {
+        if (head.next == null) return true;
+        var stack = new ArrayDeque<ListNode>();
+        var slow = head;    //  1 2 3 4 5 6     4 null
+        var fast = head;    //  1 2 3 4 5 6 7   4 7
+        while (fast != null && fast.next != null) {
+            stack.push(slow);
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        if (fast != null) slow = slow.next;
+        while (slow != null) {
+            if (slow.val != stack.pop().val) return false;
+            slow = slow.next;
+        }
+        return true;
     }
 }

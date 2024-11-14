@@ -12,11 +12,6 @@ import com.algorithm.boot.datastructure.TreeNode;
  * 叶节点 是指没有子节点的节点。
  */
 public class LC129a {
-    public static void main(String[] args) {
-        var root = TreeNode.arrayToTreeNode(new Integer[]{1,2,3,4,5});
-        var lc = new LC129a();
-        System.out.println(lc.sumNumbers(root));
-    }
     public int sumNumbers(TreeNode root) {
         return dfs(root, 0);
     }
@@ -36,5 +31,21 @@ public class LC129a {
         int cur = val * 10 + root.val;
         if (root.left == null && root.right == null) return cur;
         return dfs1(root.left, cur) + dfs1(root.right, cur);
+    }
+
+    /*
+    2 2024年11月14日
+     */
+    public int sumNumbers2(TreeNode root) {
+        return dfs2(root, 0);
+    }
+
+    private int dfs2(TreeNode node, int val) {
+        if (node == null) return 0;
+        int cur = val * 10 + node.val;
+        if (node.left == null && node.right == null) {
+            return cur;
+        }
+        return dfs2(node.left, cur) + dfs2(node.right, cur);
     }
 }

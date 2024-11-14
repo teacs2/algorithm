@@ -8,7 +8,7 @@ import java.util.Map;
  * 中等
  */
 public class LC138a {
-    class Node {
+    private class Node {
         int val;
         Node next;
         Node random;
@@ -43,5 +43,25 @@ public class LC138a {
             node.next = cache.get(cur);
         }
         return cache.get(head);
+    }
+
+    /*
+    1 2024年11月14日
+     */
+    public Node copyRandomList1(Node head) {
+        Node cur = head;
+        var map = new HashMap<Node, Node>();
+        while (cur != null) {
+            map.put(cur, new Node(cur.val));
+            cur = cur.next;
+        }
+        cur = head;
+        while (cur != null) {
+            Node node = map.get(cur);
+            node.random = map.get(cur.random);
+            cur = cur.next;
+            node.next = map.get(cur);
+        }
+        return map.get(head);
     }
 }
