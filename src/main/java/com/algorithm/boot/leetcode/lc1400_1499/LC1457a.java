@@ -11,11 +11,6 @@ import com.algorithm.boot.datastructure.TreeNode;
  * 1 <= Node.val <= 9
  */
 public class LC1457a {
-    public static void main(String[] args) {
-        var root = TreeNode.arrayToTreeNode(new Integer[]{2,1,1,1,3,null,null,null,null,null,1});
-        var lc = new LC1457a();
-        System.out.println(lc.pseudoPalindromicPaths(root));
-    }
 
     public int pseudoPalindromicPaths(TreeNode root) {
         var counter = new int[10];
@@ -54,8 +49,6 @@ public class LC1457a {
         counter[node.val]--;
         return res;
     }
-
-
     private boolean isPseudoPalindromic(int[] counter) {
         int odd = 0;
         for (int num : counter) {
@@ -63,8 +56,28 @@ public class LC1457a {
         }
         return odd <= 1;
     }
-
     private boolean isLeaf(TreeNode node) {
         return node.left == null && node.right == null;
+    }
+
+    /*
+    2 2024年11月15日
+     */
+    public int pseudoPalindromicPaths2(TreeNode root) {
+        var counter = new int[10];
+        return dfs2(root, counter);
+    }
+
+    private int dfs2(TreeNode node, int[] counter) {
+        if (node == null) return 0;
+        counter[node.val]++;
+        int res = 0;
+        if (isLeaf(node)) {
+            res = isPseudoPalindromic(counter) ? 1 : 0;
+        } else {
+            res = dfs2(node.left, counter) + dfs2(node.right, counter);
+        }
+        counter[node.val]--;
+        return res;
     }
 }

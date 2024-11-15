@@ -47,4 +47,39 @@ public class LC457a {
         // 保证在[0,n)之间
         return ((index % n) + n) % n;
     }
+
+    /*
+    1 2024年11月15日
+     */
+    public boolean circularArrayLoop1(int[] nums) {
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == 0) continue;
+            int slow = i;
+            int fast = next1(nums, i);
+            while (nums[slow] * nums[fast] > 0 && nums[slow] * nums[next1(nums, fast)] > 0) {
+                if (slow == fast) { // 有环
+                    if (slow != next1(nums, slow)) {// 环长度大于1
+                        return true;
+                    } else break;
+                }
+                slow = next1(nums, slow);
+                fast = next1(nums, next1(nums, fast));
+            }
+            int j = i;
+            while (nums[j] * nums[next1(nums, j)] > 0) {
+                int tmp = j;
+                j = next1(nums, j);
+                nums[tmp] = 0;
+            }
+        }
+        return false;
+    }
+
+    private int next1(int[] nums, int i) {
+        int len = nums.length;
+        int index = i + nums[i];
+        // 加上len保证从负数变为正数，如果本身就是正数，又会大于len
+        return ((index % len) + len) % len;
+    }
 }

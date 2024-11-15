@@ -46,6 +46,20 @@ public class LC1315a {
         if (gp % 2 == 0) {
             ans += root.val;
         }
-        return dfs1(root.left, root.val, p) + dfs1(root.right, root.val, p);
+        return dfs1(root.left, root.val, p) + dfs1(root.right, root.val, p) + ans;
+    }
+
+    /*
+    2 2024年11月15日
+     */
+    public int sumEvenGrandparent2(TreeNode root) {
+        return dfs2(root, -1, -1);
+    }
+
+    private int dfs2(TreeNode node, int p, int gp) {
+        if (node == null) return 0;
+        int ans = 0;
+        if (gp % 2 == 0) ans += node.val;
+        return dfs2(node.left, node.val, p) + dfs2(node.right, node.val, p) + ans;
     }
 }

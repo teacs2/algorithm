@@ -58,4 +58,26 @@ public class LC988a {
         dfs1(node.right, sb);
         sb.deleteCharAt(sb.length() - 1);
     }
+
+    /*
+    2 2024年11月15日
+     */
+    public String smallestFromLeaf2(TreeNode root) {
+        dfs2(root, new StringBuilder());
+        return ans;
+    }
+
+    private void dfs2(TreeNode node, StringBuilder sb) {
+        if (node == null) return;
+        sb.append((char) ('a' + node.val));
+        if (node.left == null && node.right == null) {
+            sb.reverse();
+            String s= sb.toString();
+            sb.reverse();
+            if (s.compareTo(ans) < 0) ans = s;
+        }
+        dfs2(node.left, sb);
+        dfs2(node.right, sb);
+        sb.deleteCharAt(sb.length() - 1);
+    }
 }
