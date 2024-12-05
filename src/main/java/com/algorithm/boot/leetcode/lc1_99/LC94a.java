@@ -11,6 +11,11 @@ import java.util.List;
  * 简单
  */
 public class LC94a {
+    /**
+     * 递归
+     * @param root
+     * @return
+     */
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> list = new ArrayList<>();
         dfs(root, list);
