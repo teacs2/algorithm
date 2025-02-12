@@ -20,4 +20,22 @@ public class LC817a {
         }
         return ans;
     }
+
+    /*
+    2025年2月12日
+     */
+    public int numComponents1(ListNode head, int[] nums) {
+        int res = 0;
+        Set<Integer> set = new HashSet<>(nums.length);
+        for (Integer num : nums) set.add(num);
+        while (head != null) {
+            if (set.contains(head.val)) {
+                while (head != null && set.contains(head.val)) head = head.next;
+                res++;
+            } else {
+                head = head.next;
+            }
+        }
+        return res;
+    }
 }

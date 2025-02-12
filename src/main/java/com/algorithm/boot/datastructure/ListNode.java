@@ -45,4 +45,40 @@ public class ListNode {
         }
         return len;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        // 如果比较的对象是自身，直接返回 true
+        if (this == obj) {
+            return true;
+        }
+
+        // 如果比较的对象是 null 或者不是 ListNode 类型，返回 false
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        // 类型转换
+        ListNode other = (ListNode) obj;
+
+        // 比较当前节点的值
+        if (this.val != other.val) {
+            return false;
+        }
+
+        // 递归比较下一个节点
+        if (this.next == null) {
+            return other.next == null;
+        } else {
+            return this.next.equals(other.next);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        // 为了保持 equals 和 hashCode 的一致性，我们也需要重写 hashCode 方法
+        int result = val;
+        result = 31 * result + (next != null ? next.hashCode() : 0);
+        return result;
+    }
 }
