@@ -48,4 +48,29 @@ public class LC872b {
             }
         }
     }
+
+    /*
+    2025年2月13日
+     */
+    public boolean leafSimilar1(TreeNode root1, TreeNode root2) {
+        List<Integer> list1 = new ArrayList<>();
+        List<Integer> list2 = new ArrayList<>();
+        getList1(root1, list1);
+        getList1(root2, list2);
+        if (list1.size() != list2.size()) return false;
+        return list1.equals(list2);
+    }
+
+    private void getList1(TreeNode root, List<Integer> list) {
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            if (root.left == null && root.right == null) list.add(root.val);
+            root = root.right;
+        }
+    }
 }

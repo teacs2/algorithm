@@ -23,6 +23,25 @@ public class LC203a {
         return preHead.next;
     }
 
+    /*
+    2025年2月13日
+     */
+    public ListNode removeElements1(ListNode head, int val) {
+        if (head == null) return head;
+        ListNode preHead = new ListNode(-1, head);
+        ListNode curr = preHead, next = head;
+        while (next != null) {
+            if (next.val == val) {
+                curr.next = next.next;
+                next = curr.next;
+            } else {
+                curr = curr.next;
+                next = next.next;
+            }
+        }
+        return preHead.next;
+    }
+
     public static void main(String[] args) {
         ListNode head = ListNode.buildFromArray(new Integer[]{1, 2, 6, 3, 4, 5, 6});
 

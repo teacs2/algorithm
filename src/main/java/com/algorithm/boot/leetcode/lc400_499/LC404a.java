@@ -35,4 +35,17 @@ public class LC404a {
         if (node.left == null && node.right == null && flag) return node.val;
         return dfs1(node.left, true) + dfs1(node.right, false);
     }
+
+    /*
+    2025年2月13日
+     */
+    public int sumOfLeftLeaves2(TreeNode root) {
+        return dfs2(root, false);
+    }
+
+    private int dfs2(TreeNode node, boolean flag) {
+        if (node == null) return 0;
+        if (node.left == null && node.right == null && flag) return node.val;
+        return dfs2(node.left, true) + dfs2(node.right, false);
+    }
 }
