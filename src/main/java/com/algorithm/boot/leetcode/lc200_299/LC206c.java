@@ -28,9 +28,20 @@ public class LC206c {
     }
 
     public ListNode reverseList2(ListNode head) {
-        if (head == null || head.next == null) return null;
+        if (head == null || head.next == null) return head;
         ListNode newHead = reverseList2(head.next);
-        head.next.next = head.next;
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+    }
+
+    /*
+    2025年2月15日
+     */
+    public ListNode reverseList3(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode newHead = reverseList3(head.next);
+        head.next.next = head;
         head.next = null;
         return newHead;
     }
