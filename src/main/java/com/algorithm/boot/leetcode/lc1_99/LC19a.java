@@ -15,7 +15,7 @@ public class LC19a {
         while (end != null) {
             end = end.next;
             n--;
-            if (n < 1) {        // 应该是 n < 0
+            if (n < 0) {        // 应该是 n < 0
                 node = node.next;
             }
         }
@@ -35,6 +35,24 @@ public class LC19a {
             end = end.next;
             n--;
             if (n < 0) node = node.next;
+        }
+        node.next = node.next.next;
+        return dummy.next;
+    }
+
+    /*
+    2025年2月17日
+     */
+    public ListNode removeNthFromEnd2(ListNode head, int n) {
+        ListNode dummy = new ListNode(0, head);
+        ListNode node = dummy;
+        ListNode end = dummy.next;
+        while (end != null) {
+            end = end.next;
+            n--;
+            if (n < 0) {
+                node = node.next;
+            }
         }
         node.next = node.next.next;
         return dummy.next;
