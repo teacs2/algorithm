@@ -46,7 +46,22 @@ public class LC206a {
             ListNode nxt = cur.next;
             cur.next = pre;
             pre = cur;
-            cur = cur.next;
+            cur = nxt;
+        }
+        return pre;
+    }
+
+    /*
+    2025年2月15日
+     */
+    public ListNode reverseList3(ListNode head) {
+        ListNode pre = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode nxt = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = nxt;
         }
         return pre;
     }

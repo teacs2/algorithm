@@ -17,7 +17,8 @@ public class ListNode {
     }
 
     public static ListNode buildFromArray(Integer[] array) {
-        if (array == null) return new ListNode();
+        // if (array == null || array.length == 0) return new ListNode();
+        if (array == null || array.length == 0) return null;
         ListNode head = new ListNode(array[0]);
         ListNode curr = head;
         for (int i = 1; i < array.length; i++) {
