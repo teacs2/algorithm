@@ -29,4 +29,10 @@ class LC112aTest {
         assertEquals(true, lc.hasPathSum1(root1, 22));
         assertEquals(false, lc.hasPathSum1(root2, 5));
     }
+
+    @Test
+    void hasPathSum2() {
+        assertEquals(true, lc.hasPathSum2(root1, 22));
+        assertEquals(false, lc.hasPathSum2(root2, 5));
+    }
 }
