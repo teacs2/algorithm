@@ -68,4 +68,26 @@ public class LC61a {
         iter.next = null;
         return head;
     }
+
+    /*
+    2025年2月18日
+     */
+    public ListNode rotateRight3(ListNode head, int k) {
+        if (k == 0 || head == null || head.next == null) return head;
+        int n = 1;
+        ListNode iter = head;
+        while (iter.next != null) {
+            iter = iter.next;
+            n++;
+        }
+        int offset = n - k % n;
+        if (offset == 0) return head;
+        iter.next = head;
+        while (offset-- > 0) {
+            iter = iter.next;
+        }
+        head = iter.next;
+        iter.next = null;
+        return head;
+    }
 }

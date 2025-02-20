@@ -48,4 +48,18 @@ public class LC129a {
         }
         return dfs2(node.left, cur) + dfs2(node.right, cur);
     }
+
+    /*
+    2025年2月20日
+     */
+    public int sumNumbers3(TreeNode root) {
+        return dfs3(root, 0);
+    }
+
+    private int dfs3(TreeNode node, int val) {
+        if (node == null) return 0;
+        int cur = val * 10 + node.val;
+        if (node.left == null && node.right == null) return cur;
+        return dfs3(node.left, cur) + dfs3(node.right, cur);
+    }
 }

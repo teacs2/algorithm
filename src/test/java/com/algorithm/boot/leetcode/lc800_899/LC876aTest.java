@@ -30,4 +30,10 @@ class LC876aTest {
         assertEquals(3, lc.middleNode1(root1).val);
         assertEquals(4, lc.middleNode1(root2).val);
     }
+
+    @Test
+    void middleNode2() {
+        assertEquals(3, lc.middleNode2(root1).val);
+        assertEquals(4, lc.middleNode2(root2).val);
+    }
 }

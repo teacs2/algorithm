@@ -78,4 +78,26 @@ public class LC1721a {
         last.val = temp;
         return head;
     }
+
+    /*
+    2025年2月18日
+     */
+    public ListNode swapNodes3(ListNode head, int k) {
+        ListNode first = head;
+        ListNode last = head;
+        ListNode cur = head;
+        int cnt = 1;
+        while (cur.next != null) {
+            if (cnt++ < k) {
+                first = first.next;
+            } else {
+                last = last.next;
+            }
+            cur = cur.next;
+        }
+        int temp = first.val;
+        first.val = last.val;
+        last.val = temp;
+        return head;
+    }
 }

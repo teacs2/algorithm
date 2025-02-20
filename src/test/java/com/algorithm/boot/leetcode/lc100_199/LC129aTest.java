@@ -30,4 +30,10 @@ class LC129aTest {
         assertEquals(25, lc.sumNumbers2(root1));
         assertEquals(1026, lc.sumNumbers2(root2));
     }
+
+    @Test
+    void sumNumbers3() {
+        assertEquals(25, lc.sumNumbers3(root1));
+        assertEquals(1026, lc.sumNumbers3(root2));
+    }
 }
