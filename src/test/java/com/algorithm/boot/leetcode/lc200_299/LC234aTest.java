@@ -28,4 +28,10 @@ class LC234aTest {
         assertTrue(lc.isPalindrome1(head1));
         assertFalse(lc.isPalindrome1(head2));
     }
+
+    @Test
+    void isPalindrome2() {
+        assertTrue(lc.isPalindrome2(head1));
+        assertFalse(lc.isPalindrome2(head2));
+    }
 }

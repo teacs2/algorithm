@@ -39,4 +39,11 @@ class LC1457aTest {
         assertEquals(1, lc.pseudoPalindromicPaths2(root2));
         assertEquals(1, lc.pseudoPalindromicPaths2(root3));
     }
+
+    @Test
+    void pseudoPalindromicPaths3() {
+        assertEquals(2, lc.pseudoPalindromicPaths3(root1));
+        assertEquals(1, lc.pseudoPalindromicPaths3(root2));
+        assertEquals(1, lc.pseudoPalindromicPaths3(root3));
+    }
 }

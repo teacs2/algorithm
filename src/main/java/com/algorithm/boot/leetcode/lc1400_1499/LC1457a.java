@@ -37,6 +37,7 @@ public class LC1457a {
         var counter = new int[10];
         return dfs1(root, counter);
     }
+
     private int dfs1(TreeNode node, int[] counter) {
         if (node == null) return 0;
         counter[node.val]++;
@@ -49,6 +50,7 @@ public class LC1457a {
         counter[node.val]--;
         return res;
     }
+
     private boolean isPseudoPalindromic(int[] counter) {
         int odd = 0;
         for (int num : counter) {
@@ -56,6 +58,7 @@ public class LC1457a {
         }
         return odd <= 1;
     }
+
     private boolean isLeaf(TreeNode node) {
         return node.left == null && node.right == null;
     }
@@ -79,5 +82,34 @@ public class LC1457a {
         }
         counter[node.val]--;
         return res;
+    }
+
+    /*
+    2025年2月22日
+     */
+    public int pseudoPalindromicPaths3(TreeNode root) {
+        var counter = new int[10];
+        return dfs3(root, counter);
+    }
+
+    private int dfs3(TreeNode node, int[] counter) {
+        if (node == null) return 0;
+        counter[node.val]++;
+        int res = 0;
+        if (node.left == null && node.right == null) {
+            res = isPseudoPalindromic3(counter) ? 1 : 0;
+        } else {
+            res = dfs3(node.left, counter) + dfs3(node.right, counter);
+        }
+        counter[node.val]--;
+        return res;
+    }
+
+    private boolean isPseudoPalindromic3(int[] counter) {
+        int num = 0;
+        for (int i = 0; i < 10; i++) {
+            if (counter[i] % 2 == 1) num++;
+        }
+        return num <= 1;
     }
 }
