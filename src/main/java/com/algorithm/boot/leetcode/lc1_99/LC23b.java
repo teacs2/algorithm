@@ -56,4 +56,25 @@ public class LC23b {
         }
         return dummy.next;
     }
+
+    /*
+    2025年3月22日
+     */
+    public ListNode mergeKLists2(ListNode[] lists) {
+        Queue<ListNode> heap = new PriorityQueue<>((a, b) -> Integer.compare(a.val, b.val));
+        for (ListNode head : lists) {
+            if (head != null) heap.offer(head);
+        }
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+        while (!heap.isEmpty()) {
+            ListNode node = heap.poll();
+            if (node.next != null) {
+                heap.offer(node.next);
+            }
+            cur.next = node;
+            cur = node;
+        }
+        return dummy.next;
+    }
 }
