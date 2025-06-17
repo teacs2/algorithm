@@ -38,4 +38,23 @@ public class LC1372a {
         dfs(node.left, leftLen, -1);
         dfs(node.right, rightLen, 1);
     }
+
+    /*
+    2025年3月22日
+     */
+    public int longestZigZag1(TreeNode root) {
+        res = 0;
+        dfs1(root, 0, 0);
+        return res;
+    }
+
+    private void dfs1(TreeNode node, int len, int path) {
+        if (node == null) return;
+        res = Math.max(len, res);
+        if (node.left == null && node.right == null) return;
+        int leftLen = path != -1 ? len + 1 : 1;
+        int rightLen = path != 1 ? len + 1 : 1;
+        dfs1(node.left, leftLen, -1);
+        dfs1(node.right, rightLen, 1);
+    }
 }
