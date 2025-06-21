@@ -13,7 +13,9 @@ public class LC111a {
      * @return
      */
     public int minDepth(TreeNode root) {
-        if (root == null) return 0;
+        if (root == null) {
+            return 0;
+        }
         int depthLeft = 0;
         if (root.left != null) {
             depthLeft = minDepth(root.left);
@@ -31,7 +33,9 @@ public class LC111a {
     1 2024年11月13日
      */
     public int minDepth1(TreeNode root) {
-        if (root == null) return 0;
+        if (root == null) {
+            return 0;
+        }
         int depthLeft = 0;
         if (root.left != null) {
             depthLeft = minDepth1(root.left);
