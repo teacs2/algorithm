@@ -18,16 +18,17 @@ public class TreeNode {
     }
 
     /**
-     * 将数组转化为二叉树
+     * 将数组转化为二叉树<pre>
+     * 例如 将[10,5,-3,3,2,null,11,3,-2,null,1]转化为如下二叉树
+     *                 10   <br>
+     *            ⌞---------⌟   <br>
+     *          5           -3  <br>
+     *      ⌞------⌟         --⌟    <br>
+     *    3         2           11  <br>
+     *  ⌞---⌟       ---⌟    <br>
+     * 3    -2          1   <br></pre>
      * @param array
-     * 例如 10,5,-3,3,2,null,11,3,-2,null,1 ==》
-     *                 10
-     *            ⌞---------⌟
-     *          5           -3
-     *      ⌞------⌟         --⌟
-     *    3         2           11
-     *  ⌞---⌟       ---⌟
-     * 3    -2          1
+     *
      * @return  返回根节点
      */
     public static TreeNode arrayToTreeNode(Integer[] array) {
