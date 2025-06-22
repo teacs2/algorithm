@@ -34,4 +34,9 @@ class LC102aTest {
     void levelOrder2() {
         assertEquals(ans1, lc.levelOrder2(root1));
     }
+
+    @Test
+    void levelOrder3() {
+        assertEquals(ans1, lc.levelOrder3(root1));
+    }
 }

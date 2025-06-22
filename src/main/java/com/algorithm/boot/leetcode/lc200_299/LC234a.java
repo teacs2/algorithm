@@ -65,4 +65,26 @@ public class LC234a {
         }
         return true;
     }
+
+    /*
+    2025年2月22日
+    栈实现
+     */
+    public boolean isPalindrome2(ListNode head) {
+        if (head == null) return false;
+        var fast = head;
+        var slow = head;
+        var stack = new ArrayDeque<ListNode>();
+        while (fast != null && fast.next != null) {
+            stack.push(slow);
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        if (fast != null) slow = slow.next;
+        while (slow != null) {
+            if (slow.val != stack.pop().val) return false;
+            slow = slow.next;
+        }
+        return true;
+    }
 }

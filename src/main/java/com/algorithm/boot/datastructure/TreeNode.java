@@ -17,6 +17,20 @@ public class TreeNode {
         this.right = right;
     }
 
+    /**
+     * 将数组转化为二叉树<pre>
+     * 例如 将[10,5,-3,3,2,null,11,3,-2,null,1]转化为如下二叉树
+     *                 10   <br>
+     *            ⌞---------⌟   <br>
+     *          5           -3  <br>
+     *      ⌞------⌟         --⌟    <br>
+     *    3         2           11  <br>
+     *  ⌞---⌟       ---⌟    <br>
+     * 3    -2          1   <br></pre>
+     * @param array
+     *
+     * @return  返回根节点
+     */
     public static TreeNode arrayToTreeNode(Integer[] array) {
         if (array[0] == null) {
             throw new NullPointerException("缺少根节点");
@@ -44,14 +58,18 @@ public class TreeNode {
 
     private static void writeArray(TreeNode currNode, int rowIndex, int columnIndex, String[][] res, int treeDepth) {
         // 保证输入的树不为空
-        if (currNode == null) return;
+        if (currNode == null) {
+            return;
+        }
         // 先将当前节点保存到二维数组中
         res[rowIndex][columnIndex] = String.valueOf(currNode.val);
 
         // 计算当前位于树的第几层
         int currLevel = ((rowIndex + 1) / 2);
         // 若到了最后一层，则返回
-        if (currLevel == treeDepth) return;
+        if (currLevel == treeDepth) {
+            return;
+        }
         // 计算当前行到下一行，每个元素之间的间隔（下一行的列索引与当前元素的列索引之间的间隔）
         int gap = treeDepth - currLevel - 1;
 
@@ -69,6 +87,10 @@ public class TreeNode {
     }
 
 
+    /**
+     * 输出打印到控制台
+     * @param root  根节点
+     */
     public static void showConsole(TreeNode root) {
         if (root == null){
             System.out.println("EMPTY!");
@@ -107,6 +129,11 @@ public class TreeNode {
         }
     }
 
+    /**
+     * 获取当前根节点高度
+     * @param root
+     * @return
+     */
     public static int getTreeDepth(TreeNode root) {
         return root == null ? 0 : (1 + Math.max(getTreeDepth(root.left), getTreeDepth(root.right)));
     }

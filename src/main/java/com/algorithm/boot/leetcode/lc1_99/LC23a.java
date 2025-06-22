@@ -23,8 +23,12 @@ public class LC23a {
 
     private ListNode mergeKLists(ListNode[] lists, int i, int j) {
         int m = j - i;
-        if (m == 0) return null;
-        if (m == 1) return lists[i];
+        if (m == 0) {
+            return null;
+        }
+        if (m == 1) {
+            return lists[i];
+        }
         ListNode left = mergeKLists(lists, i, (j + i) / 2);
         ListNode right = mergeKLists(lists, (j + i) / 2, j);
 
@@ -40,8 +44,12 @@ public class LC23a {
 
     private ListNode mergeKLists1(ListNode[] lists, int i, int j) {
         int m = j - i;
-        if (m == 0) return null;
-        if (m == 1) return lists[i];
+        if (m == 0) {
+            return null;
+        }
+        if (m == 1) {
+            return lists[i];
+        }
         ListNode left = mergeKLists1(lists, i, i + ((j - i) / 2));
         ListNode right = mergeKLists1(lists, ((j - i) / 2), j);
 

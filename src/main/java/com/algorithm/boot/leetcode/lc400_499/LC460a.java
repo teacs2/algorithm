@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 460. LFU 缓存
+ * <a href="https://leetcode.cn/problems/lfu-cache/description/">460. LFU 缓存</a>
  * 困难
  * 请你为 最不经常使用（LFU）缓存算法设计并实现数据结构。
  * <p>
@@ -19,7 +19,10 @@ import java.util.Map;
  * - 当缓存达到其容量 capacity 时，则应该在插入新项之前，移除最不经常使用的项。
  * 在此问题中，当存在平局（即两个或更多个键具有相同使用频率）时，应该去除 最久未使用的键。
  */
-public class LFUCache {
+public class LC460a {
+}
+
+class LFUCache {
     private static class Node {
         int key, value, freq = 1;
         Node prev, next;
@@ -85,7 +88,7 @@ public class LFUCache {
     }
 
     private Node newList() {
-        Node dummy = new Node(0,0); // 哨兵节点
+        Node dummy = new Node(0, 0); // 哨兵节点
         dummy.next = dummy;
         dummy.prev = dummy;
         return dummy;

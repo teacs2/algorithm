@@ -3,7 +3,10 @@ package com.algorithm.boot.leetcode.lc100_199;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LRUCache2 {
+public class LC146b {
+}
+
+class LRUCache2 {
     class DLinkedNode {
         int key;
         int value;
