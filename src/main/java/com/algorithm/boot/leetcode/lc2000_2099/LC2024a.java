@@ -21,7 +21,19 @@ public class LC2024a {
      * @return
      */
     public int maxConsecutiveAnswers(String answerKey, int k) {
-
-        return 0;
+        int res = 0;
+        char[] chars = answerKey.toCharArray();
+        int l = 0;
+        int[] cnt = new int[2];
+        for (int r = 0; r < answerKey.length(); r++) {
+            // 'F' -> 0100 0110, 'T' ->  0101 0100
+            cnt[chars[r] >> 1 & 1]++;
+            // 不能是 ||
+            while (cnt[0] > k && cnt[1] > k) {
+                cnt[chars[l++] >> 1 & 1]--;
+            }
+            res = Math.max(res, r - l + 1);
+        }
+        return res;
     }
 }
