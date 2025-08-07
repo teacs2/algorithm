@@ -16,9 +16,17 @@ public class ListNode {
         this.next = next;
     }
 
+    /**
+     * 构建从Integer构建链表
+     *
+     * @param array Integer数组
+     * @return 链表头
+     */
     public static ListNode buildFromArray(Integer[] array) {
         // if (array == null || array.length == 0) return new ListNode();
-        if (array == null || array.length == 0) return null;
+        if (array == null || array.length == 0) {
+            return null;
+        }
         ListNode head = new ListNode(array[0]);
         ListNode curr = head;
         for (int i = 1; i < array.length; i++) {
@@ -28,6 +36,13 @@ public class ListNode {
         return head;
     }
 
+    /**
+     * 链表转int数组
+     * 5->4->7 ==> {5,4,7}
+     *
+     * @param head 链表头
+     * @return int数组
+     */
     public static int[] listToArray(ListNode head) {
         int len = getLength(head);
         var arr = new int[len];
@@ -38,6 +53,12 @@ public class ListNode {
         return arr;
     }
 
+    /**
+     * 获取链表长度
+     *
+     * @param head 链表头
+     * @return 链表长度
+     */
     public static int getLength(ListNode head) {
         int len = 0;
         while (head != null) {
@@ -47,6 +68,12 @@ public class ListNode {
         return len;
     }
 
+    /**
+     * 比较两个链表值是否相等
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         // 如果比较的对象是自身，直接返回 true

@@ -9,8 +9,14 @@ public class TreeNode {
     public int val;
     public TreeNode left;
     public TreeNode right;
-    public TreeNode() {}
-    public TreeNode(int val) { this.val = val; }
+
+    public TreeNode() {
+    }
+
+    public TreeNode(int val) {
+        this.val = val;
+    }
+
     public TreeNode(int val, TreeNode left, TreeNode right) {
         this.val = val;
         this.left = left;
@@ -20,16 +26,16 @@ public class TreeNode {
     /**
      * 将数组转化为二叉树<pre>
      * 例如 将[10,5,-3,3,2,null,11,3,-2,null,1]转化为如下二叉树
-     *                 10   <br>
-     *            ⌞---------⌟   <br>
-     *          5           -3  <br>
-     *      ⌞------⌟         --⌟    <br>
-     *    3         2           11  <br>
-     *  ⌞---⌟       ---⌟    <br>
-     * 3    -2          1   <br></pre>
-     * @param array
+     *                 10
+     *            ⌞---------⌟
+     *          5           -3
+     *      ⌞------⌟         --⌟
+     *    3         2           11
+     *  ⌞---⌟       ---⌟
+     * 3    -2          1   </pre>
      *
-     * @return  返回根节点
+     * @param array
+     * @return 返回根节点
      */
     public static TreeNode arrayToTreeNode(Integer[] array) {
         if (array[0] == null) {
@@ -89,10 +95,11 @@ public class TreeNode {
 
     /**
      * 输出打印到控制台
-     * @param root  根节点
+     *
+     * @param root 根节点
      */
     public static void showConsole(TreeNode root) {
-        if (root == null){
+        if (root == null) {
             System.out.println("EMPTY!");
             return;
         }
@@ -131,6 +138,7 @@ public class TreeNode {
 
     /**
      * 获取当前根节点高度
+     *
      * @param root
      * @return
      */
@@ -139,7 +147,7 @@ public class TreeNode {
     }
 
     public static void main(String[] args) {
-        TreeNode node = arrayToTreeNode(new Integer[]{000,111,222,333,444,555,666,777,888,999});
+        TreeNode node = arrayToTreeNode(new Integer[]{000, 111, 222, 333, 444, 555, 666, 777, 888, 999});
         showConsole(node);
     }
 }
