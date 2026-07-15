@@ -11,6 +11,26 @@ import java.util.Set;
  * 英文中的 元音字母 为（a, e, i, o, u）。
  */
 public class LC1456a {
+    public int maxVowels1(String s, int k) {
+        char[] chars = s.toCharArray();
+        Set<Character> set = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u'));
+        int res = 0;
+        int vowel = 0;
+        for (int i = 0; i < chars.length; i++) {
+            if (set.contains(chars[i])) {
+                vowel++;
+            }
+            if (i < k - 1) {
+                continue;
+            }
+            res = Math.max(res, vowel);
+            if (set.contains(chars[i - k + 1])) {
+                vowel--;
+            }
+        }
+        return res;
+    }
+
     public int maxVowels(String s, int k) {
         char[] chars = s.toCharArray();
         Set<Character> set = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u'));
