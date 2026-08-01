@@ -11,6 +11,24 @@ package com.algorithm.boot.leetcode.lc2300_2399;
  * 请你返回至少出现 一次 连续 k 个黑色块的 最少 操作次数。
  */
 public class LC2379a {
+    public int minimumRecolors1(String blocks, int k) {
+        int res = Integer.MAX_VALUE;
+        int recolor = 0;
+        for (int i = 0; i < blocks.length(); i++) {
+            if (blocks.charAt(i) == 'W') {
+                recolor++;
+            }
+            if (i < k - 1) {
+                continue;
+            }
+            res = Math.min(res, recolor);
+            if (blocks.charAt(i - k + 1) == 'W') {
+                recolor--;
+            }
+        }
+        return res;
+    }
+
     public int minimumRecolors(String blocks, int k) {
         int res = Integer.MAX_VALUE;
         int recolor = 0;

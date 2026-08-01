@@ -31,7 +31,7 @@ public class LC1456a {
         return res;
     }
 
-    public int maxVowels(String s, int k) {
+    public int maxVowels2(String s, int k) {
         char[] chars = s.toCharArray();
         Set<Character> set = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u'));
         int res = 0;
@@ -50,4 +50,26 @@ public class LC1456a {
         }
         return res;
     }
+
+    public int maxVowels(String s, int k) {
+        Set<Character> vowelSet = new HashSet<>(Arrays.asList('a','e','i','o','u'));
+        char[] chars = s.toCharArray();
+        int res = 0;
+        int vowel = 0;
+        for (int i = 0; i < chars.length; i++) {
+            if (vowelSet.contains(chars[i])) {
+                vowel++;
+            }
+            if (i < k - 1) {
+                continue;
+            }
+            res = Math.max(vowel, res);
+            if (vowelSet.contains(chars[i - k + 1])) {
+                vowel--;
+            }
+        }
+        return res;
+    }
+
+
 }
