@@ -13,7 +13,7 @@ import java.util.Map;
  * 子数组指的是一个数组中一段连续 非空 的元素序列。
  */
 public class LC2841a {
-    public long maxSum(List<Integer> nums, int m, int k) {
+    public long maxSum1(List<Integer> nums, int m, int k) {
         long maxSum = 0;
         long sum = 0;
         Map<Integer, Integer> map = new HashMap<>(nums.size());
@@ -36,6 +36,34 @@ public class LC2841a {
                 if (map.get(num) <= 0) {
                     m++;
                     map.remove(num);
+                }
+            }
+        }
+        return maxSum;
+    }
+
+    public long maxSum(List<Integer> nums, int m, int k) {
+        long maxSum = 0L;
+        long sum = 0L;
+        Map<Integer, Integer> map = new HashMap<>(nums.size());
+        for (int i = 0; i < nums.size(); i++) {
+            sum += nums.get(i);
+            map.merge(nums.get(i), 1, Integer::sum);
+            if (map.get(nums.get(i)) <= 1) {
+                m--;
+            }
+            if (i < k - 1) {
+                continue;
+            }
+            if (m <= 0) {
+                maxSum = Math.max(maxSum, sum);
+            }
+            int num = nums.get(i - k + 1);
+            sum -= num;
+            map.merge(num, -1, Integer::sum);
+            if (map.containsKey(num)) {
+                if (map.get(num) == 0) {
+                    m++;
                 }
             }
         }

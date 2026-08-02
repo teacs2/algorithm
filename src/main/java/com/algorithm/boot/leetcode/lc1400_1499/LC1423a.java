@@ -1,5 +1,7 @@
 package com.algorithm.boot.leetcode.lc1400_1499;
 
+import java.util.Arrays;
+
 public class LC1423a {
     /**
      * <a href="https://leetcode.cn/problems/maximum-points-you-can-obtain-from-cards/">1423. 可获得的最大点数</a>中等
@@ -14,7 +16,7 @@ public class LC1423a {
      * @param k             k 张卡牌
      * @return              可以获得的最大点数
      */
-    public int maxScore(int[] cardPoints, int k) {
+    public int maxScore1(int[] cardPoints, int k) {
         int maxScore = 0;
         int score = 0;
         for (int i = cardPoints.length - k; i < cardPoints.length + k; i++) {
@@ -31,5 +33,20 @@ public class LC1423a {
             score -= cardPoints[index];
         }
         return maxScore;
+    }
+
+    public int maxScore(int[] cardPoints, int k) {
+        int n = cardPoints.length;
+        int windowSize = n - k;
+        int sum = 0;
+        for (int i = 0; i < windowSize; i++) {
+            sum += cardPoints[i];
+        }
+        int minSum = sum;
+        for (int i = windowSize; i < n; i++) {
+            sum += cardPoints[i] - cardPoints[i - windowSize];
+            minSum = Math.min(sum, minSum);
+        }
+        return Arrays.stream(cardPoints).sum() - minSum;
     }
 }

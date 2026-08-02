@@ -13,7 +13,7 @@ public class LC1052a {
      * @param minutes
      * @return
      */
-    public int maxSatisfied(int[] customers, int[] grumpy, int minutes) {
+    public int maxSatisfied1(int[] customers, int[] grumpy, int minutes) {
         // 老板不压制情绪时，感到满意的顾客数量
         int satisfied = 0;
         for (int i = 0; i < customers.length; i++) {
@@ -38,5 +38,30 @@ public class LC1052a {
             }
         }
         return satisfied + maxNotSatisfied;
+    }
+
+    public int maxSatisfied(int[] customers, int[] grumpy, int minutes) {
+        int satisfied = 0;
+        for (int i = 0; i < customers.length; i++) {
+            if (grumpy[i] == 0) {
+                satisfied += customers[i];
+            }
+        }
+
+        int notSatisfied = 0;
+        int maxNotSatisfied = 0;
+        for (int i = 0; i < customers.length; i++) {
+            if (grumpy[i] == 1) {
+                notSatisfied += customers[i];
+            }
+            if (i < minutes - 1) {
+                continue;
+            }
+            maxNotSatisfied = Math.max(notSatisfied, maxNotSatisfied);
+            if (grumpy[i - minutes + 1] == 1) {
+                notSatisfied -= customers[i - minutes + 1];
+            }
+        }
+        return  satisfied + maxNotSatisfied;
     }
 }
