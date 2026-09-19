@@ -1,8 +1,11 @@
 package com.algorithm.boot.leetcode.lc3000_3099;
 
+import lombok.extern.log4j.Log4j2;
+
 /**
  * <a href="https://leetcode.cn/problems/maximum-length-substring-with-two-occurrences/description/">3090. 每个字符最多出现两次的最长子字符串</a>
  */
+@Log4j2
 public class LC3090a {
     public int maximumLengthSubstring1(String s) {
         char[] chars = s.toCharArray();
@@ -21,6 +24,7 @@ public class LC3090a {
     }
 
     public int maximumLengthSubstring(String s) {
+        log.error("asd{}{}", "", "", new Exception());
         char[] chars = s.toCharArray();
         int[] cnt = new int[128];
         int res = 0;

@@ -3,7 +3,7 @@ package com.algorithm.boot.leetcode.lc1200_1299;
 import com.algorithm.boot.datastructure.ListNode;
 
 public class LC1290a {
-    public int getDecimalValue(ListNode head) {
+    public int getDecimalValue1(ListNode head) {
         ListNode currNode = head;
         int ans = 0;
         while (currNode != null) {
@@ -12,5 +12,15 @@ public class LC1290a {
             currNode = currNode.next;
         }
         return ans;
+    }
+
+    public int getDecimalValue(ListNode head) {
+        ListNode currNode = head;
+        int res = 0;
+        while (currNode != null) {
+            res = (res << 1) + currNode.val;
+            currNode = currNode.next;
+        }
+        return res;
     }
 }

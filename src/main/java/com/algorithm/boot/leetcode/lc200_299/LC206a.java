@@ -12,7 +12,7 @@ public class LC206a {
      * @param head
      * @return
      */
-    public ListNode reverseList(ListNode head) {
+    public ListNode reverseList4(ListNode head) {
         ListNode prev = null;
         ListNode curr = head;
         while (curr != null) {
@@ -64,5 +64,28 @@ public class LC206a {
             curr = nxt;
         }
         return pre;
+    }
+
+    public ListNode reverseList(ListNode head) {
+        ListNode preNode = null;
+        ListNode currNode = head;
+        while (currNode != null) {
+            ListNode nextNode = currNode.next;
+            currNode.next = preNode;
+            preNode = currNode;
+            currNode = nextNode;
+        }
+        return preNode;
+    }
+
+    public ListNode reverseList6(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode revHead = reverseList6(head.next);
+        ListNode tail = head.next;
+        tail.next = head;
+        head.next = null;
+        return revHead;
     }
 }
