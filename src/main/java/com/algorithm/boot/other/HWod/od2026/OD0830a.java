@@ -1,4 +1,4 @@
-package com.algorithm.boot.other.HWod;
+package com.algorithm.boot.other.HWod.od2026;
 
 /**
  * # 小花获胜的奶茶

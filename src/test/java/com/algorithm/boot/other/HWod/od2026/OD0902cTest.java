@@ -1,4 +1,4 @@
-package com.algorithm.boot.other.HWod;
+package com.algorithm.boot.other.HWod.od2026;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
