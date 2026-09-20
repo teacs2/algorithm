@@ -9,10 +9,33 @@ import java.util.*;
  * 中等
  */
 public class LC102a {
-    public static void main(String[] args) {
 
-    }
     public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+        Deque<TreeNode> queue = new ArrayDeque<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int layerSize = queue.size();
+            List<Integer> layer = new ArrayList<>(layerSize);
+            for (int i = 0; i < layerSize; i++) {
+                TreeNode node = queue.poll();
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+                layer.add(node.val);
+            }
+            res.add(layer);
+        }
+        return res;
+    }
+
+    public List<List<Integer>> levelOrder4(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
         if (root == null) {
             return res;
