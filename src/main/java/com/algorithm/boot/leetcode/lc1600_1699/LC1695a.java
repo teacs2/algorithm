@@ -16,10 +16,11 @@ public class LC1695a {
      * 1 <= nums.length <= 10^5
      * 1 <= nums[i] <= 10^4
      * </pre>
+     *
      * @param nums
      * @return
      */
-    public int maximumUniqueSubarray(int[] nums) {
+    public int maximumUniqueSubarray1(int[] nums) {
         int maxSum = 0;
         int sum = 0;
         Set<Integer> set = new HashSet<>();
@@ -33,6 +34,24 @@ public class LC1695a {
             }
             set.add(nums[r]);
             maxSum = Math.max(maxSum, sum);
+        }
+        return maxSum;
+    }
+
+    public int maximumUniqueSubarray(int[] nums) {
+        int maxSum = 0;
+        int sum = 0;
+        Set<Integer> set = new HashSet<>(nums.length);
+        int l = 0;
+        for (int r = 0; r < nums.length; r++) {
+            sum += nums[r];
+            while (set.contains(nums[r])) {
+                set.remove(nums[l]);
+                sum -= nums[l];
+                l++;
+            }
+            set.add(nums[r]);
+            maxSum = Math.max(sum, maxSum);
         }
         return maxSum;
     }

@@ -15,7 +15,7 @@ public class LC1658a {
      * @param x
      * @return
      */
-    public int minOperations(int[] nums, int x) {
+    public int minOperations1(int[] nums, int x) {
         // 相当于求恰好等于k的最长的滑动窗口和,  k = sum(nums) - x
         int k = -x;
         for (int num : nums) {
@@ -31,6 +31,31 @@ public class LC1658a {
             sum += nums[r];
             while (sum > k) {
                 sum -= nums[l++];
+            }
+            if (sum == k) {
+                res = Math.max(res, r - l + 1);
+            }
+        }
+        return res == -1 ? -1 : nums.length - res;
+    }
+
+    public int minOperations(int[] nums, int x) {
+        // 相当于求恰好等于k的最长的滑动窗口和,  k = sum(nums) - x
+        int k = -x;
+        for (int num : nums) {
+            k += num;
+        }
+        if (k < 0) {
+            return -1;
+        }
+        int res = -1;
+        int l = 0;
+        int sum = 0;
+        for (int r = 0; r < nums.length; r++) {
+            sum += nums[r];
+            while (sum > k) {
+                sum -= nums[l];
+                l++;
             }
             if (sum == k) {
                 res = Math.max(res, r - l + 1);

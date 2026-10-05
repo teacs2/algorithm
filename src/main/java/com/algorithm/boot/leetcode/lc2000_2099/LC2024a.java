@@ -20,7 +20,7 @@ public class LC2024a {
      * @param k
      * @return
      */
-    public int maxConsecutiveAnswers(String answerKey, int k) {
+    public int maxConsecutiveAnswers1(String answerKey, int k) {
         int res = 0;
         char[] chars = answerKey.toCharArray();
         int l = 0;
@@ -35,5 +35,34 @@ public class LC2024a {
             res = Math.max(res, r - l + 1);
         }
         return res;
+    }
+
+    public int maxConsecutiveAnswers(String answerKey, int k) {
+        int res = 0;
+        int t = 0;
+        int f = 0;
+        int l = 0;
+        for (int r = 0; r < answerKey.length(); r++) {
+            if (answerKey.charAt(r) == 'T') {
+                t++;
+            } else {
+                f++;
+            }
+            while (Math.min(t, f) > k) {
+                if (answerKey.charAt(l) == 'T') {
+                    t--;
+                } else {
+                    f--;
+                }
+                l++;
+            }
+            res = Math.max(res, r - l + 1);
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("F: " + String.format("%8s", Integer.toBinaryString('F')).replace(' ', '0'));
+        System.out.println("T: " + String.format("%8s", Integer.toBinaryString('T')).replace(' ', '0'));
     }
 }

@@ -35,7 +35,7 @@ public class LC1423a {
         return maxScore;
     }
 
-    public int maxScore(int[] cardPoints, int k) {
+    public int maxScore2(int[] cardPoints, int k) {
         int n = cardPoints.length;
         int windowSize = n - k;
         int sum = 0;
@@ -45,6 +45,22 @@ public class LC1423a {
         int minSum = sum;
         for (int i = windowSize; i < n; i++) {
             sum += cardPoints[i] - cardPoints[i - windowSize];
+            minSum = Math.min(sum, minSum);
+        }
+        return Arrays.stream(cardPoints).sum() - minSum;
+    }
+
+    public int maxScore(int[] cardPoints, int k) {
+        // 先取反，拿到最小值，再用全部减去最小值
+        int n = cardPoints.length;
+        int winSize = n - k;
+        int sum = 0;
+        for (int i = 0; i < winSize; i++) {
+            sum += cardPoints[i];
+        }
+        int minSum = sum;
+        for (int i = winSize; i < n; i++) {
+            sum += cardPoints[i] - cardPoints[i - winSize];
             minSum = Math.min(sum, minSum);
         }
         return Arrays.stream(cardPoints).sum() - minSum;
